@@ -7,42 +7,46 @@ import "hardhat/console.sol";
 contract Swaper {
     using SafeMath for uint256;
 
-    Token private aliceOld;
-    Token private aliceNew;
-    Token private bobOld;
-    Token private bobNew;
+    address private alice;
+    address private bob;
+    Token private token1;
+    Token private token2;
 
     constructor(
-        address _aliceOld,
-        address _aliceNew,
-        address _bobOld,
-        address _bobNew
+        address _alice,
+        address _bob,
+        address _token1,
+        address _token2
     ) {
-        aliceOld = Token(_aliceOld);
-        aliceNew = Token(_aliceNew);
-        bobOld = Token(_bobOld);
-        bobNew = Token(_bobNew);
-        console.log("Create a swaper");
-        console.log("Create token with symbol: ", aliceOld.symbol());
-        console.log("Create token with symbol: ", aliceNew.symbol());
-        console.log("Create token with symbol: ", bobOld.symbol());
-        console.log("Create token with symbol: ", bobNew.symbol());
+        alice= _alice;
+        bob= _bob;
+        token1 = Token(_token1);
+        token2 = Token(_token2);
+        // console.log("Create a swaper");
+        // console.log("Create token with symbol: ", aliceOld.symbol());
+        // console.log("Create token with symbol: ", aliceNew.symbol());
+        // console.log("Create token with symbol: ", bobOld.symbol());
+        // console.log("Create token with symbol: ", bobNew.symbol());
     }
 
     function swap(uint256 _amount) public {
-        
         require(
-            aliceOld.balanceOf(msg.sender) >= _amount,
+            token1.balanceOf(alice) >= _amount,
             "Alice has not enough token"
         );
         require(
-            _amount.div(aliceOld.getRate()) <
-                (bobOld.balanceOf(bobOld.getOwner())).div(bobOld.getRate()),
+            _amount.div(token1.getRate()) <
+                (token2.balanceOf(bob)).div(token2.getRate()),
             "Bob has not enough token"
         );
-        require(msg.sender == aliceOld.getOwner());
+        //require(msg.sender == aliceOld.getOwner());
 
-        aliceOld.transferFrom(aliceOld.getOwner(), bobNew.getOwner(), _amount);
+        console.log(alice);
+        console.log(bob);
+
+        token1.approve(address(this), _amount);
+        token1.transferFrom(alice, bob, _amount);
+        //token2.transferFrom(bob, alice, _amount);
 
         //bobOld.transferFrom(bobOld.getOwner(), aliceNew.getOwner(), (_amount.div(aliceOld.getRate())).mul(bobOld.getRate()));
         // bobOld.transfer(
