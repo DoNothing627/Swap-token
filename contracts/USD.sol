@@ -5,8 +5,5 @@ import "./Token.sol";
 import "hardhat/console.sol";
 
 contract USD is Token {
-    constructor() public Token(1, "Dollar", "USD") {
-        // console.log("Create new VND with owner: ", _owner);
-        // console.log("Create new VND with initial supply: ", initialSupply);
-    }
+    constructor() public Token(1, "Dollar", "USD") {}
 }

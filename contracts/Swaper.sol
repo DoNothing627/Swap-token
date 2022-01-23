@@ -41,12 +41,12 @@ contract Swaper {
         );
         //require(msg.sender == aliceOld.getOwner());
 
-        console.log(alice);
-        console.log(bob);
+        // console.log(token1.balanceOf(alice));
+        console.log(address(token1));
 
-        token1.approve(address(this), _amount);
+        //token1.approve(address(this), _amount);
         token1.transferFrom(alice, bob, _amount);
-        //token2.transferFrom(bob, alice, _amount);
+        token2.transferFrom(bob, alice, (_amount.mul(token2.getRate())).div(token1.getRate()));
 
         //bobOld.transferFrom(bobOld.getOwner(), aliceNew.getOwner(), (_amount.div(aliceOld.getRate())).mul(bobOld.getRate()));
         // bobOld.transfer(
