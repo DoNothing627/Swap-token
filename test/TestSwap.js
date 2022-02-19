@@ -6,35 +6,36 @@ describe("Swaper", async function () {
 
 
     it("Swap and transfer token", async function () {
-        let [Alice, Bob] = await ethers.getSigners();
+        const [USER] = await ethers.getSigners();
 
-        const VND = await ethers.getContractFactory("VND");
-        const EUR = await ethers.getContractFactory("EUR");
+        const Token = await ethers.getContractFactory("Token");
         const Swaper = await ethers.getContractFactory("Swaper");
 
-        const vnd = await VND.deploy(); //init agrument
-        const eur = await EUR.deploy(); //init agrument
+        const vnd = await Token.deploy("Vietnamese Dong", "VND"); //init agrument
+        const usd = await Token.deploy("Dollar", "USD"); //init agrument
+        const swaper = await Swaper.deploy();
 
         await vnd.deployed();
-        await eur.deployed();
-
-        await vnd.setAccount(inital, Alice.address);
-        await vnd.setAccount(inital, Bob.address);
-        await eur.setAccount(inital, Alice.address);
-        await eur.setAccount(inital, Bob.address);
-
-        const swaper = await Swaper.deploy(Alice.address, Bob.address, vnd.address, eur.address);
-
-        const amount = 30000; // lượng VND muốm đổi
-        const get = 3; // lượng EUR nhận về 3= 30000/ 20000* 2;
-
+        await usd.deployed();
         await swaper.deployed();
-        await swaper.swap(amount);
 
-        expect(await vnd.balanceOf(Alice.address)).to.equal(inital - amount);
-        expect(await vnd.balanceOf(Bob.address)).to.equal(inital + amount);
-        expect(await eur.balanceOf(Alice.address)).to.equal(inital + get);
-        expect(await eur.balanceOf(Bob.address)).to.equal(inital - get);
+        await vnd.setAccount(USER.address, inital);
+        await vnd.setAccount(swaper.address, inital);
+        await usd.setAccount(USER.address, inital);
+        await usd.setAccount(swaper.address, inital);
+
+        const amount = 400000; // lượng VND muốm đổi
+        const rate = 20000
+        const get = 20; // lượng EUR nhận về 20= 400000/ 20000;
+
+        await vnd.approve(swaper.address, amount);
+        
+        await swaper.swap(USER.address, vnd.address, usd.address, amount, rate);
+
+        expect(await vnd.balanceOf(USER.address)).to.equal(inital- amount);
+        expect(await vnd.balanceOf(swaper.address)).to.equal(inital+ amount);
+        expect(await usd.balanceOf(swaper.address)).to.equal(inital- get);
+        expect(await usd.balanceOf(USER.address)).to.equal(inital+ get);
 
     });
 });
