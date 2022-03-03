@@ -81,7 +81,6 @@ contract Swaper is Ownable {
     function _tokenOutHandle(address _tokenOut, uint256 _amount) private {
         if (_tokenOut != address(0)) {
             ERC20 token = ERC20(_tokenOut);
-            token.approve(msg.sender, _amount);
             token.safeTransfer(msg.sender, _amount);
             return;
         }

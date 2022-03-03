@@ -128,7 +128,7 @@ describe("Swap token successful", function () {
     });
     it("swap 1 vnd to 1 ETH", async function () {
         await vnd.connect(user).approve(swaper.address, (10 ** 18).toString());
-        await swaper.connect(user).swap(vnd.address, "0x0000000000000000000000000000000000000000", (10 ** 18).toString());
+        await swaper.connect(user).swap(vnd.address, addressZero, (10 ** 18).toString());
 
         const vndUserBalance = await vnd.balanceOf(user.address);
         const ethSwaperBalance = await ethers.provider.getBalance(swaper.address);
