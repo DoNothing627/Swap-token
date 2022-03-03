@@ -1,9 +1,6 @@
-const { expect, use } = require("chai");
+const { expect } = require("chai");
 const { ethers } = require("hardhat");
-const { providers } = require("web3");
 const { utils } = ethers;
-const web3 = require('web3')
-const BN = web3.utils.BN;
 
 const addressZero = "0x0000000000000000000000000000000000000000";
 describe("Initial and change rate", function () {
