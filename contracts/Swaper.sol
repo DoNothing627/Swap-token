@@ -1,11 +1,13 @@
-pragma solidity ^0.8.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.4;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
-contract Swaper is Ownable {
-    using SafeERC20 for ERC20;
+contract Swaper is Initializable, OwnableUpgradeable {
+    using SafeERC20Upgradeable for ERC20Upgradeable;
 
     struct Rate {
         uint256 rate;
@@ -73,14 +75,14 @@ contract Swaper is Ownable {
 
     function _tokenInHandle(address _tokenIn, uint256 _amount) private {
         if (_tokenIn != address(0)) {
-            ERC20 token = ERC20(_tokenIn);
+            ERC20Upgradeable token = ERC20Upgradeable(_tokenIn);
             token.safeTransferFrom(msg.sender, address(this), _amount);
         }
     }
 
     function _tokenOutHandle(address _tokenOut, uint256 _amount) private {
         if (_tokenOut != address(0)) {
-            ERC20 token = ERC20(_tokenOut);
+            ERC20Upgradeable token = ERC20Upgradeable(_tokenOut);
             token.safeTransfer(msg.sender, _amount);
             return;
         }

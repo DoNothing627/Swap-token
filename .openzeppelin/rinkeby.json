@@ -1,0 +1,236 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x5dc70aa4cC139cB9121F8DD02fbE1f44C3F495D2",
+    "txHash": "0x3ae8c6fc797f2d2aa18b236c0738f1aeacb3e285eff8efcc5cbb828443663a90"
+  },
+  "proxies": [
+    {
+      "address": "0xc3BAfF294BaD55041a6C67448A5646B0264212D4",
+      "txHash": "0xd0d12ca5b69abc0effe5afe5249a6e498068c05c176454a0910a32853cf61a52",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x97F64d843FdC5FF79EA74Edf24cc853f6d454347",
+      "txHash": "0x9ebe6f061ab544d14174954f522e4afa1cb82cd304fd8ad36730ae55cbdd0402",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x008e3eda200dfd8Eb0e63c136c24F45E1629d7c3",
+      "txHash": "0x230ef9803ebb8341a3912ff8b01328d2f2a849e2f4ceba2e0b21b923f3c67613",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xA8d28261ec942BBceF4Ac2c828dd83eb13981027",
+      "txHash": "0xffbef7633053d02ff3e27993d2cb24e429ac941135c30a687661e173ab1ea96a",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x4fe4E05F372A1122cEe0326B3174C28A5c8EF248",
+      "txHash": "0xdaef9e988f4680bc825cc83b219e4ad6a31c4d959ae5ebb9d3b7dea70bc05176",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x06fCccf9f5272D2CefaBD3374697e8A904605611",
+      "txHash": "0x220d71d00a3f50647447ccd8d2f579393014fcba7d07c67dd12204d35e2b18ad",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x21630fC7ea5dF450f6aDEFD78E4caa156eB5111b",
+      "txHash": "0x3a59c9d29de71ec5a22ed92af5a6f47fd3ef0f1ae0dd263eca42a7f8b075dda8",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "2aa5ba151663e2577586446f58761dbdc9d90e4652c15e3a83eb60d74a5e8e91": {
+      "address": "0x58d180630cB0b0ACa69F181EE279EbcB345b8A62",
+      "txHash": "0x9f4edaba92abd513c06be427dd90c57a0f82d1b1a365cb254546a6493ed77874",
+      "layout": {
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:39"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:44"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:87"
+          },
+          {
+            "label": "tokenRate",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_struct(Rate)2151_storage))",
+            "contract": "Swaper",
+            "src": "contracts/Swaper.sol:16"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_struct(Rate)2151_storage))": {
+            "label": "mapping(address => mapping(address => struct Swaper.Rate))"
+          },
+          "t_mapping(t_address,t_struct(Rate)2151_storage)": {
+            "label": "mapping(address => struct Swaper.Rate)"
+          },
+          "t_struct(Rate)2151_storage": {
+            "label": "struct Swaper.Rate",
+            "members": [
+              {
+                "label": "rate",
+                "type": "t_uint256"
+              },
+              {
+                "label": "rateDecimals",
+                "type": "t_uint32"
+              }
+            ]
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_uint32": {
+            "label": "uint32"
+          }
+        }
+      }
+    },
+    "4132906986ecf4382e7c5a457561d31b5856eafa84aa96ad2dd5d4fe1ae1c9e4": {
+      "address": "0xAe894318fCD44cF95cC1F073bD03aC2E9E583FFe",
+      "txHash": "0x9b1e39004a7bc6d539c74e3277b8f7287182256b13107e27464c4e3f76c39404",
+      "layout": {
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:39"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:44"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:87"
+          },
+          {
+            "label": "tokenRate",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_struct(Rate)1441_storage))",
+            "contract": "Swaper",
+            "src": "contracts/Swaper.sol:17"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_struct(Rate)1441_storage))": {
+            "label": "mapping(address => mapping(address => struct Swaper.Rate))"
+          },
+          "t_mapping(t_address,t_struct(Rate)1441_storage)": {
+            "label": "mapping(address => struct Swaper.Rate)"
+          },
+          "t_struct(Rate)1441_storage": {
+            "label": "struct Swaper.Rate",
+            "members": [
+              {
+                "label": "rate",
+                "type": "t_uint256"
+              },
+              {
+                "label": "rateDecimals",
+                "type": "t_uint32"
+              }
+            ]
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_uint32": {
+            "label": "uint32"
+          }
+        }
+      }
+    }
+  }
+}
