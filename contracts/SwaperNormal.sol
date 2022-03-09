@@ -1,13 +1,12 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
-contract Swaper is Initializable, OwnableUpgradeable {
-    using SafeERC20Upgradeable for ERC20Upgradeable;
+contract SwaperNormal is Ownable {
+    using SafeERC20 for ERC20;
 
     struct Rate {
         uint256 rate;
@@ -15,10 +14,6 @@ contract Swaper is Initializable, OwnableUpgradeable {
     }
 
     mapping(address => mapping(address => Rate)) public tokenRate;
-
-    function __Swap_init() public initializer {
-        __Ownable_init();
-    }
 
     receive() external payable {}
 
@@ -43,12 +38,6 @@ contract Swaper is Initializable, OwnableUpgradeable {
 
         emit ChangeRate(_tokenIn, _tokenOut, _rate, _rateDecimals);
     }
-
-    function withdraw(
-        address _token,
-        uint256 _amount,
-        address _receiver
-    ) external payable onlyOwner {}
 
     function swap(
         address _tokenIn,
@@ -85,18 +74,18 @@ contract Swaper is Initializable, OwnableUpgradeable {
 
     function _tokenInHandle(address _tokenIn, uint256 _amount) private {
         if (_tokenIn != address(0)) {
-            ERC20Upgradeable token = ERC20Upgradeable(_tokenIn);
-            token.safeTransferFrom(_msgSender(), address(this), _amount);
+            ERC20 token = ERC20(_tokenIn);
+            token.safeTransferFrom(msg.sender, address(this), _amount);
         }
     }
 
     function _tokenOutHandle(address _tokenOut, uint256 _amount) private {
         if (_tokenOut != address(0)) {
-            ERC20Upgradeable token = ERC20Upgradeable(_tokenOut);
-            token.safeTransfer(_msgSender(), _amount);
+            ERC20 token = ERC20(_tokenOut);
+            token.safeTransfer(msg.sender, _amount);
             return;
         }
-        (bool sent, ) = (_msgSender()).call{value: _amount}("");
+        (bool sent, ) = (msg.sender).call{value: _amount}("");
         require(sent, "Transfer token failed");
     }
 }

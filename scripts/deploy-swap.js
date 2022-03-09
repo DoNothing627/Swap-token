@@ -5,19 +5,19 @@ async function main() {
 
     console.log("Deploying contracts with the account:", deployer.address);
 
-    const Swaper = await hre.ethers.getContractFactory("Swaper"); // Getting the Contract
+    const SwaperNormal = await hre.ethers.getContractFactory("SwaperNormal"); // Getting the Contract
     // const Token = await hre.ethers.getContractFactory("Token");
     // const swaper = await upgrades.deployProxy(Swaper, [42], { initializer: 'store' });//deploying the contract
     // const vnd= await upgrades.deployProxy(Token("VietnamDong", "VND", 100), [41], { initializer: 'store' });//deploying the contract
 
     //const usd= await upgrades.deployProxy(Token("Dollar", "USD", 100), [40], { initializer: 'store' });//deploying the contract
-    const swaper = await Swaper.deploy();//deploying the contract
+    const swaperNormal = await SwaperNormal.deploy();//deploying the contract
 
-    await swaper.deployed(); // waiting for the contract to be deployed
+    await swaperNormal.deployed(); // waiting for the contract to be deployed
     //await vnd.deployed();
     //await usd.deployed();
 
-    console.log("Swaper deployed to:", swaper.address); // Returning the contract address on the rinkeby
+    console.log("Swaper deployed to:", swaperNormal.address); // Returning the contract address on the rinkeby
     //console.log("vnd deploy to: ", )
 }
 

@@ -6,7 +6,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
-contract Swaper is Initializable, OwnableUpgradeable {
+contract SwaperV2 is Initializable, OwnableUpgradeable {
     using SafeERC20Upgradeable for ERC20Upgradeable;
 
     struct Rate {
@@ -44,11 +44,11 @@ contract Swaper is Initializable, OwnableUpgradeable {
         emit ChangeRate(_tokenIn, _tokenOut, _rate, _rateDecimals);
     }
 
-    function withdraw(
-        address _token,
-        uint256 _amount,
-        address _receiver
-    ) external payable onlyOwner {}
+    // function withdraw(
+    //     address _token,
+    //     uint256 _amount,
+    //     address _receiver
+    // ) external payable onlyOwner {}
 
     function swap(
         address _tokenIn,
